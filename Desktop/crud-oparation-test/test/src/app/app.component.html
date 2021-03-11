@@ -1,0 +1,71 @@
+<div class="container" style="margin-left: 497px;">
+    <div class="row">
+        <div class="col-md-10">
+            <h1 class="text-center"style="margin-left:25px;">Student Information</h1>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-success pull-right" (click)="showAddUserForm()" style="background-color:purple;margin-left: 17px;margin-left: 284px;
+            margin-bottom: 13px;">Add New User</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mt-4">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">First Name</th>
+                        <th class="text-center">Last Name</th>
+                        <th class="text-center">Roll Number</th>
+                        <th class="text-center">&nbsp;Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.firstName }}</td>
+                        <td>{{ user.lastName }}</td>
+                        <td>{{ user.roll }}</td>
+
+                        <td>
+                            <button type="button" class="btn-primary" (click)="showEditUserForm(user)"
+                                style="background-color:green">Edit</button>
+
+                            <button type="button" class="btn btn-danger btn-sm" (click)="removeUser(user)"
+                                style="background-color:red">Delete</button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="mt-4">
+                <form *ngIf="userForm">
+                    <h2>Add New Student</h2>
+                    <p>First Name: <input type="text" name="firstName" [(ngModel)]="newUser.firstName" /></p>
+                    <p>Last Name: <input type="text" name="lastName" [(ngModel)]="newUser.lastName" /></p>
+                    <p>Roll Number: <input type="text" name="rollnumber" [(ngModel)]="newUser.roll" /></p>
+                    <p>
+                        <button type="button" class="btn btn-primary mr-2" (click)="saveUser(newUser)"
+                            style="background-color:blue;margin-left: 17px;">Submit</button>
+                        <button type="button" class="btn btn-warning" (click)="cancelNewUser()"
+                            style="background-color:red;margin-left: 17px;">Cancel</button>
+                    </p>
+                </form>
+
+                <form *ngIf="editUserForm">
+                    <h2>Edit Student Details</h2>
+                    <p>First Name: <input type="text" name="firstName" [(ngModel)]="editedUser.firstName" /></p>
+                    <p>Last Name: <input type="text" name="lastName" [(ngModel)]="editedUser.lastName" /></p>
+                    <p>Roll Number: <input type="text" name="rollnumber" [(ngModel)]="newUser.roll" /></p>
+                    <p>
+                        <button type="button" class="btn btn-primary mr-2" (click)="updateUser()"
+                            style="background-color:blue;margin-left: 17px;">Submit</button>
+                        <button type="button" class="btn btn-warning" (click)="cancelEdits()"
+                            style="background-color:red;margin-left: 17px;">Cancel</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
